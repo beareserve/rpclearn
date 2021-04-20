@@ -2,6 +2,7 @@ package cn.by.protocol.dubbo;
 
 import cn.by.framework.Invocation;
 import cn.by.provider.LocalRegister;
+import com.alibaba.fastjson.JSON;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -18,7 +19,8 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         Method method = serviceImpl.getMethod(invocation.getMethodName(), invocation.getParamType());
         Object result = method.invoke(serviceImpl.newInstance(), invocation.getParams());
 
-        System.out.println("Netty-------------" + result.toString());
+        System.out.println("debug的invocation:" + JSON.toJSONString(invocation) + ";result--" + JSON.toJSONString(result));
+        System.out.println("Netty服务端执行程序得到结果----" + result.toString() + "；开始返回客户端");
         ctx.writeAndFlush("Netty:" + result);
     }
 }

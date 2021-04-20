@@ -26,6 +26,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
     public synchronized Object call() throws Exception {
         context.writeAndFlush(this.invocation);
         wait();
+        System.out.println("服务端返回了结果：" + result);
         return result;
     }
 
