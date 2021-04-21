@@ -17,7 +17,7 @@ public class Provider {
         // 3. 启动tomcat
 
         // 注册服务
-        URL url = new URL("localhost", 8080); //NetUtil
+        URL url = new URL("localhost", 880); //NetUtil
         RemoteMapRegister.regist(HelloService.class.getName(), url);
 
         //  服务：实现类
